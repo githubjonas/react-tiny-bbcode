@@ -1,26 +1,113 @@
-> This project is created to simplify the process of publishing a React component to npm. For a full tutorial on publishing React component to npm, please refer to [this guide](https://medium.com/groftware/how-to-publish-your-react-component-on-npm-9cf48d91944d)
+# react-tiny-bbcode
 
-## Guide
-1. Replace contents in `/src` with your React component.
-1. Edit `webpack.config.js`, replace the following:
-	1. `entry: './src/YOUR_COMPONENT.js'` Replace value of `entry` to path to the entry point of your component.
-	1. Replace 	`output.filename` to the name of your component
-	```
-		output: {
-			path: path.resolve('lib'),
-			filename: 'YOUR_COMPONENT.js',
-			libraryTarget: 'commonjs2',
-  	},
-	```
-1. Edit `package.json`, replace the following:
-	1. `"name": "YOUR_PACKAGE_NAME"` Replace the value of `name` to your package name. This will be the name of the package that is published to `npm` and the name that is used when other people install your package using `npm install YOUR_PACKAGE_NAME`.
-	1. Update the values of `version` and `description` to accordingly.
-	1. `"main": "./lib/YOUR_COMPONENT.js"` replace `YOUR_COMPONENT.js` with the name that you've set in `output.filename` during Step #2
-	1. If your component uses any other dependencies, make sure to add them into the `peerDependencies` list.
-1. Building your component by running `npm build` in your command line. This would generate the folder `/lib` which includes your component.
-1. Publishing to [npm](https://www.npmjs.com/)
-	1. Make sure you've [registered an npm account](https://www.npmjs.com/signup)
-	1. Run `npm login` in your command line, and enter your credentials.
-	1. Run `npm publish`, and your React component will be uploaded to npm! You can find it at https://www.npmjs.com/package/[YOUR PACKAGE NAME] or your npm profile.
+This aims to implement a simple, yet fully functional bbcode editor and parser for React.
 
-1. To update your package, make sure you remember to increment the `version` in `package.json`, and then perform Step #5 again.
+## Installation
+```
+npm i -s react-tiny-bbcode
+```
+## Usage
+### Simplest usage
+```
+import React from 'react';
+import {Editor} from "react-tiny-bbcode";
+
+export function MyBBcodeEditorPage(props) {
+  return (
+    <Editor preview={true} />
+  );    
+}
+```
+
+### More advanced usage
+```
+import React, { useState } from 'react';
+import {Editor, Parser} from "react-tiny-bbcode";
+
+export function MyBBcodeEditorPage(props) {
+  const [bbcode, setBBcode] = useState();
+
+  const update = (v) => {
+    setBBcode(v);
+  };
+
+  return (
+    <Editor
+      onChange={update}
+      button={{
+        style: {
+          paddingRight: 10,
+          cursor: "pointer"
+        }
+      }}
+      textarea={{
+        style: {minWidth: 500, minHeight: 300}
+      }}
+    />
+    <hr/>
+    <Parser bbcode={bbcode} />
+  );    
+}
+```
+
+### \<Editor\> Component
+| Parameter         | Type     | Description                                                       | Default    |
+| ----------------- |--------- |------------------------------------------------------------------ | -----------|
+| `onChange`        | function | Custom function to run when clicked, where `v` is the bbcode string                               | `(v)=>{}`  |
+| `preview`         | boolean  | Set to true to automatically render a preview area below editor   | `false`    |
+| `container`       | object   | props that will be applied to the surrounding editor container    | `{}`       |
+| `buttonContainer` | object   | props that will be applied to the button container                | `{}`       |
+| `button`          | object   | props that will be applied to each button                         | `{}`       |
+| `textarea`        | object   | props that will be applied to the editor edit area                | `{}`       |
+| `buttons`         | array    | array of button object to render, see below                       | `[...]`    |
+
+### Buttons
+The Editor comes with a few default buttons, but is easily expandable with custom buttons.
+Below is an example of a few buttons implemented.
+```
+const buttons = [
+  {
+    caption: "<b>B</b>",
+    tag: "b"
+  },
+  {
+    caption: "<i>I</i>",
+    tag: "i",
+  },
+  {
+    caption: "<u>U</u>",
+    tag: "u"
+  },
+  {
+    caption: "{}",
+    tag: "code"
+  },
+  {
+    caption: "<span style=\"color: red\">C</span><span style=\"color: green\">O</span><span style=\"color: blue\">L</span>",
+    tag: "color",
+    onClick: () => {
+      return prompt("Enter color name or code in format ##rrggbb:");
+    }
+  },
+  {
+    caption: "Img",
+    tag: "img",
+    onClick: () => {
+      return prompt("align left, right or stretch (leave empty for default):");
+    }
+  }
+];
+
+return (
+  <Editor buttons={buttons} />
+);
+```   
+
+## Contribute and build
+Contribute to this repository by sending pull requests my way! All help is welcome!
+
+Make sure you have `webpack` installed on your host machine.
+```
+npm run-script build
+```
+Use `npm link` to link to a local frontend react project to be able to modify and test immediately.

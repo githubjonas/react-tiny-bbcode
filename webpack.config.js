@@ -2,16 +2,16 @@ const path = require('path');
 
 module.exports = {
   mode: 'production',
-  entry: './src/YOUR_COMPONENT.js',
+  entry: './src/tiny-bbcode.jsx',
   output: {
     path: path.resolve('lib'),
-    filename: 'YOUR_COMPONENT.js',
+    filename: 'tiny-bbcode.js',
     libraryTarget: 'commonjs2',
   },
   module: {
     rules: [
       {
-        test: /\.js?$/,
+        test: /\.jsx?$/,
         exclude: /(node_modules)/,
         use: 'babel-loader',
       },
@@ -31,7 +31,7 @@ module.exports = {
     }
   },
   externals: {
-    // Don't bundle react or react-dom      
+    // Don't bundle react or react-dom
     react: {
       commonjs: "react",
       commonjs2: "react",

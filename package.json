@@ -1,8 +1,8 @@
 {
-    "name": "YOUR_PACKAGE_NAME",
+    "name": "react-tiny-bbcode",
     "version": "0.1.0",
-    "description": "",
-    "main": "./lib/YOUR_COMPONENT.js",
+    "description": "Tiny React component for editing and render bbcode",
+    "main": "./lib/tiny-bbcode.js",
     "license": "MIT",
     "scripts": {
         "build": "webpack"
@@ -27,5 +27,7 @@
         "webpack": "^4.5.0",
         "webpack-cli": "^3.2.1"
     },
-    "dependencies": {}
+    "dependencies": {
+        "core-js": "^3.6.5"
+    }
 }
