@@ -4,9 +4,12 @@ This aims to implement a simple, yet fully functional bbcode editor and parser f
 
 ## Installation
 ```
-npm i -s react-tiny-bbcode
+npm install react-tiny-bbcode
 ```
 ## Usage
+
+Working example: https://codesandbox.io/s/react-tiny-bbcode-g4h94
+
 ### Simplest usage
 ```
 import React from 'react';

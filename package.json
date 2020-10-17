@@ -4,6 +4,7 @@
     "description": "Tiny React component for editing and render bbcode",
     "main": "./lib/tiny-bbcode.js",
     "license": "MIT",
+    "homepage": "https://github.com/githubjonas/react-tiny-bbcode",
     "scripts": {
         "build": "webpack"
     },
