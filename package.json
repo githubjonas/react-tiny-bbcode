@@ -1,6 +1,6 @@
 {
     "name": "react-tiny-bbcode",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "description": "Tiny React component for editing and render bbcode",
     "main": "./lib/tiny-bbcode.js",
     "license": "MIT",
