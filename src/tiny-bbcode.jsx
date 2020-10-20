@@ -40,7 +40,7 @@ export function Parser(props) {
  * @constructor
  */
 export function Editor(props) {
-  const [bbtext, setBbtext] = useState("");
+  const [bbtext, setBbtext] = useState(props.value ? props.value : "");
   const taRef = useRef("");
   const[selection, setSelection] = useState();
 
