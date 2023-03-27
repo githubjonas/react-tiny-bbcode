@@ -264,7 +264,7 @@ function textToHtmlCB(mstr, m1, m2, m3, m4, offset, string)
 
         var style = 'style="max-width: 100%;"';
         if (m3) {
-          style = 'class="' + m3 + '"';
+          style = 'class="tiny-bbcode-img-' + m3 + '"';
         }
 
         return "<img " + style + " src=\"";
