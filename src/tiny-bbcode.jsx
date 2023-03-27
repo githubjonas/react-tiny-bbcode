@@ -264,17 +264,7 @@ function textToHtmlCB(mstr, m1, m2, m3, m4, offset, string)
 
         var style = 'style="max-width: 100%;"';
         if (m3) {
-          switch(m3) {
-            case 'left':
-              style = 'style="max-width: 51%; float: left; padding: 4px 4px 4px 0px;"';
-              break;
-            case 'right':
-              style = 'style="max-width: 51%; float: right; padding: 4px 0px 4px 4px;"';
-              break;
-            case 'stretch':
-              style = 'style="width: 100%;"';
-              break;
-          }
+          style = 'class="tiny-bbcode-img-' + m3 + '"';
         }
 
         return "<img " + style + " src=\"";
