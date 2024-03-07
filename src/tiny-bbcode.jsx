@@ -52,11 +52,11 @@ export function Editor(props) {
   }, [selection]);
 
   useEffect(() => {
-    if (!props.value) return; // update editor if user changes value programmatically
+    // update editor if user changes value programmatically
     setSelection(null);
-    setBbtext(props.value);
+    setBbtext(props.value || '');
     if (typeof props.onChange === 'function') {
-      props.onChange(props.value);
+      props.onChange(props.value || '');
     }
   }, [props.value]);
 
