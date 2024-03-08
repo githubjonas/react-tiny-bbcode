@@ -51,6 +51,15 @@ export function Editor(props) {
     taRef.current.setSelectionRange(start, end);
   }, [selection]);
 
+  useEffect(() => {
+    // update editor if user changes value programmatically
+    setSelection(null);
+    setBbtext(props.value || '');
+    if (typeof props.onChange === 'function') {
+      props.onChange(props.value || '');
+    }
+  }, [props.value]);
+
   const update = (e) => {
     setSelection(null);
     setBbtext(e.currentTarget.value);
